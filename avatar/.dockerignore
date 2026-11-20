@@ -1,0 +1,16 @@
+.env
+models
+sam-env
+sam-3d-body
+**/__pycache__
+*.zip
+web_viewer
+
+validation
+.git
+
+.env.*
+ml-model
+.cache
+.venv*
+deployment

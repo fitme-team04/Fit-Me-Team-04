@@ -1,0 +1,58 @@
+# 받은 데이터 — 커밋하지 않음 (각자 fetch 로 받기)
+opensource/sources/
+
+# 파이썬 캐시·가상환경 (setup.sh 가 만드는 .venv)
+__pycache__/
+*.pyc
+.venv/
+.cache/body-fit-test-deps/
+
+# 비밀 정보 — API 키·비밀번호는 절대 커밋하지 않음
+.env
+
+# 예시 코드가 --save 로 만든 JSON·CSV (db/예시_코드/_db.py save_text)
+out/
+
+# 받다 만 파일
+*.part
+
+# 편집기·OS 찌꺼기
+.DS_Store
+Thumbs.db
+.vscode/
+
+# ── 11/12 추가 (eugene 요청) ─────────────────────────────
+# 비밀값 파일 변형 — 예시(.example)만 올림
+app.env
+.env.*
+!.env.example
+!.env.*.example
+!*.env.example
+
+# 3D·ML 모델 파일 — 크고 다시 만들 수 있음
+# (예외: 3D 의류 기본 틀은 레포에 둠)
+*.blend
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+!garment/models/garments/*.blend
+!garment/models/garments/*.npz
+
+# DB 덤프·압축 파일 (db/sql/*.sql 스키마 파일은 계속 올림)
+*.dump
+*.sql.gz
+*.tar.gz
+*.zip
+
+# 로그·편집기·패키지 폴더
+*.log
+.idea/
+node_modules/
+
+# Claude 개인 설정
+.claude/settings.local.json
+
+# Local Tripo CLI context
+.tripo/

@@ -1,0 +1,14 @@
+{
+  "source": "facebookresearch/MHR v1.0.1",
+  "photo_used": false,
+  "vertices": 18439,
+  "faces": 36874,
+  "arm_angles_deg": {
+    "l": 44.99137878417969,
+    "r": 44.990623474121094
+  },
+  "pose_indices": "0:130",
+  "preserved_personal_size_indices": "130:204",
+  "mhr_sha256": "352e271a6c42729c68554ceaea0c955e866970160c31e35506d782dc0f7377bc",
+  "calibration_id": "e7fad1e2dc29a957461b803842deda007c3e227abbf0681c698c1f7799634a54"
+}

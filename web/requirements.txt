@@ -1,0 +1,7 @@
+# 입어봄 웹앱 (web/) 파이썬 라이브러리 — Azure App Service 가 배포할 때 이 파일을 보고 자동 설치
+# 내 PC 설치: app 폴더에서  python -m venv .venv  →  .venv\Scripts\python -m pip install -r requirements.txt
+fastapi==0.162.0      # 웹 API 만들기 (주소 /api/... ↔ 파이썬 함수 연결)
+uvicorn==0.54.0       # FastAPI 를 실제로 띄우는 웹 서버
+PyMySQL==1.2.3        # MySQL 접속 (팀 requirements.txt 와 같은 버전)
+openai==3.46.0        # Azure OpenAI 호출 (추천 이유 설명, 설정했을 때만 사용)
+redis==6.4.0          # V2 요청·응답 전달

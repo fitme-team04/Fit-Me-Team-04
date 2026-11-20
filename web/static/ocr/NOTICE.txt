@@ -1,0 +1,6 @@
+Bundled for local garment tag recognition. No recognition assets are fetched from a CDN.
+Tesseract.js 6.0.1 (browser ES module and worker), https://github.com/naptha/tesseract.js
+Tesseract.js-core 6.0.0 (portable LSTM WebAssembly build), https://github.com/naptha/tesseract.js-core
+English and Korean 4.0.0_best_int language models, @tesseract.js-data/eng and /kor 1.0.0,
+https://github.com/naptha/tessdata and https://github.com/tesseract-ocr/tessdata_best
+Distributed under Apache License 2.0. See LICENSE, LICENSE.md and bundled dependency notices.

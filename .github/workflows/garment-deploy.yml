@@ -1,0 +1,98 @@
+# =====================================================================
+# garment-deploy.yml — 3D 의류 서버 자동 배포 (초안, 아직 레포에 없음)
+# ---------------------------------------------------------------------
+# 언제 돌아가나?
+#   - dev 에 garment/ 아래 파일이 바뀌어 들어올 때
+#   - Actions 화면에서 "Run workflow" 버튼을 눌렀을 때
+#
+# 무엇을 하나? (프론트 front-deploy.yml 과 같은 흐름)
+#   1) 코드 내려받기 → 2) Azure 로그인(OIDC github-dev)
+#   3) 이미지 만들기(빌드 중에 3D팀 생성 점검 check_generation 도 같이 돎)
+#   4) ACR(fitmeacrdev) 에 올리기 (태그: 커밋 번호 + latest)
+#   5) 의류 VM 이 꺼져 있으면 켜기 (자동 종료가 켜져 있어서)
+#   6) Run Command 로 의류 VM 에서 infra/deploy/garment-update.sh 실행 → 컨테이너 교체
+#   7) /health 응답에 "service":"garment" 가 있으면 성공
+#
+# 필요한 것
+#   - GitHub Secrets: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID (있음)
+#   - 의류 VM 관리 ID 에 ACR AcrPull (11/11 완료)
+#   - 의류 VM /opt/fitme-garment 에 docker-compose.yml, .env (한 번만 직접, README 참고)
+# =====================================================================
+name: Garment deploy
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - "garment/**"
+      - "infra/deploy/garment-update.sh"
+      - ".github/workflows/garment-deploy.yml"
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: garment-deploy
+  cancel-in-progress: false
+
+env:
+  RG: 11ai-p1-team04-rg
+  ACR: fitmeacrdev
+  IMAGE: fitmeacrdev.azurecr.io/fitme-garment
+  VM: fitme-vm-garment-dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: 코드 내려받기
+        uses: actions/checkout@v4
+
+      - name: Azure 로그인
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # 빌드 위치는 3D팀 폴더 (Dockerfile 이 그 폴더 기준으로 파일을 복사함)
+      - name: 이미지 만들기
+        working-directory: garment
+        run: docker build --target garment -t "$IMAGE:${{ github.sha }}" -t "$IMAGE:latest" .
+
+      - name: ACR 에 이미지 올리기
+        run: |
+          az acr login -n "$ACR"
+          docker push "$IMAGE:${{ github.sha }}"
+          docker push "$IMAGE:latest"
+
+      # 꺼진 VM 에는 Run Command 가 안 되므로 먼저 켠다 (시간당 약 65원)
+      - name: 의류 VM 켜기 (꺼져 있으면)
+        run: |
+          STATE=$(az vm get-instance-view -g "$RG" -n "$VM" \
+                    --query "instanceView.statuses[?starts_with(code,'PowerState/')].code | [0]" -o tsv)
+          echo "현재 상태: $STATE"
+          if [ "$STATE" != "PowerState/running" ]; then
+            az vm start -g "$RG" -n "$VM"
+            sleep 30
+          fi
+
+      - name: 의류 VM 에 배포
+        run: |
+          sed "s/__TAG__/${{ github.sha }}/" infra/deploy/garment-update.sh > /tmp/garment-update.sh
+          OUT=$(az vm run-command invoke -g "$RG" -n "$VM" \
+                  --command-id RunShellScript \
+                  --scripts @/tmp/garment-update.sh \
+                  --query "value[0].message" -o tsv)
+          echo "$OUT"
+          echo "$OUT" | grep -q '"service":"garment"' || { echo "::error::의류 서버 상태 확인 실패 (위 로그 확인)"; exit 1; }
+
+      - name: 결과 요약
+        if: success()
+        run: |
+          echo "### 의류 서버 배포 완료 :white_check_mark:" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 이미지: \`$IMAGE:${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 주소(내부): http://10.4.2.5:8002" >> "$GITHUB_STEP_SUMMARY"

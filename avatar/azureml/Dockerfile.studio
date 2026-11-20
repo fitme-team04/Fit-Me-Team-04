@@ -1,0 +1,8 @@
+# 역할: 등록 모델 추론에 필요한 Python 환경을 구성합니다.
+FROM mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04
+USER root
+COPY environment-studio.yaml /tmp/environment-studio.yaml
+RUN conda env create -p /azureml-envs/fitme -f /tmp/environment-studio.yaml
+ENV PATH=/azureml-envs/fitme/bin:$PATH
+ENV AZUREML_CONDA_ENVIRONMENT_PATH=/azureml-envs/fitme
+ENV LD_LIBRARY_PATH=/azureml-envs/fitme/lib:$LD_LIBRARY_PATH

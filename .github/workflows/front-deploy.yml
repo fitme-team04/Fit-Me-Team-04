@@ -1,0 +1,102 @@
+# =====================================================================
+# front-deploy.yml — 프론트 웹앱 자동 배포
+# ---------------------------------------------------------------------
+# 언제 돌아가나?
+#   - dev 브랜치에 프론트 관련 파일(web/, db/예시_코드/, 배포 파일)이 바뀌어 들어올 때
+#     (보통 feature/front-v2 → dev PR 을 머지한 순간)
+#   - Actions 화면에서 "Run workflow" 버튼을 눌렀을 때 (워크플로가 main 에도 있어야 버튼이 보임)
+#
+# 무엇을 하나? (전체 흐름)
+#   1) 코드 내려받기
+#   2) Azure 로그인 (GitHub Actions용 계정, 비밀번호 없이 OIDC 규칙 github-dev 로)
+#   3) web/Dockerfile 으로 이미지 만들기
+#   4) ACR(fitmeacrdev) 에 이미지 올리기 (태그: 커밋 번호 + latest)
+#   5) 웹 VM 에 Run Command 로 infra/deploy/web-update.sh 실행 → 새 이미지로 교체
+#   6) 웹앱 상태 확인 결과로 성공(초록불)/실패(빨간불) 판단
+#
+# 필요한 것 (11/11 설정 완료)
+#   - GitHub Secrets: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID
+#   - GitHub Actions용 계정: 리소스 그룹 Contributor (ACR 올리기 + Run Command 가능)
+#   - OIDC 규칙 github-dev (dev 브랜치에서 로그인 허용)
+#   - 웹 VM 관리 ID 에 ACR AcrPull
+# =====================================================================
+name: Front deploy
+
+on:
+  push:
+    branches: [dev]
+    # 아래 파일이 바뀐 경우에만 실행 (infra/ 만 바뀐 경우 등은 배포 안 함)
+    paths:
+      - "web/**"
+      - "db/예시_코드/**"
+      - "web/Dockerfile"
+      - "ml/ease_check/ease_check.py"   # 판정 기준이 바뀌면 웹도 다시 배포
+      - "infra/deploy/web-update.sh"
+      - ".github/workflows/front-deploy.yml"
+  workflow_dispatch: {}   # 수동 실행 버튼
+
+permissions:
+  id-token: write   # Azure 로그인용 임시 토큰(OIDC) 발급 허용
+  contents: read    # 코드 읽기만
+
+# 배포가 두 개 동시에 돌지 않게 줄 세우기 (앞 배포가 끝나야 다음 배포 시작)
+concurrency:
+  group: front-deploy
+  cancel-in-progress: false
+
+# 여러 단계에서 같이 쓰는 이름들
+env:
+  RG: 11ai-p1-team04-rg                        # 리소스 그룹
+  ACR: fitmeacrdev                             # 이미지 저장소 이름
+  IMAGE: fitmeacrdev.azurecr.io/fitme-web      # 이미지 전체 이름
+  VM: fitme-vm-web-dev                         # 배포할 웹 VM
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30   # 30분 넘게 걸리면 멈춤 (보통 5분 안쪽)
+    steps:
+      # 1) 레포 코드를 GitHub 실행기(임시 컴퓨터)로 내려받기
+      - name: 코드 내려받기
+        uses: actions/checkout@v4
+
+      # 2) Azure 로그인 — 비밀번호 없이, GitHub 가 발급한 임시 토큰으로
+      - name: Azure 로그인
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # 3) 이미지 만들기 — 태그 두 개: 커밋 번호(되돌리기용) + latest(최신)
+      - name: 이미지 만들기
+        run: docker build -f web/Dockerfile -t "$IMAGE:${{ github.sha }}" -t "$IMAGE:latest" .
+
+      # 4) ACR 에 올리기
+      - name: ACR 에 이미지 올리기
+        run: |
+          az acr login -n "$ACR"
+          docker push "$IMAGE:${{ github.sha }}"
+          docker push "$IMAGE:latest"
+
+      # 5) 웹 VM 에서 새 이미지로 교체
+      #    - web-update.sh 안의 __TAG__ 를 이번 커밋 번호로 바꾼 복사본을 만들고
+      #    - az vm run-command 로 웹 VM 안에서 그 스크립트를 실행 (VM 접속 불필요)
+      #    - 스크립트 출력에 health 응답("version":"2")이 없으면 실패 처리
+      - name: 웹 VM 에 배포
+        run: |
+          sed "s/__TAG__/${{ github.sha }}/" infra/deploy/web-update.sh > /tmp/web-update.sh
+          OUT=$(az vm run-command invoke -g "$RG" -n "$VM" \
+                  --command-id RunShellScript \
+                  --scripts @/tmp/web-update.sh \
+                  --query "value[0].message" -o tsv)
+          echo "$OUT"
+          echo "$OUT" | grep -q '"version":"2"' || { echo "::error::웹앱 상태 확인 실패 (위 로그 확인)"; exit 1; }
+
+      # 6) 결과 요약 (Actions 실행 화면 맨 아래에 표시)
+      - name: 결과 요약
+        if: success()
+        run: |
+          echo "### 배포 완료 :white_check_mark:" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 이미지: \`$IMAGE:${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 주소: https://<웹 VM 주소>" >> "$GITHUB_STEP_SUMMARY"

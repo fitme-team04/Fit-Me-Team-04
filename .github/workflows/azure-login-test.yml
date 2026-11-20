@@ -1,0 +1,16 @@
+name: Azure login test
+on:
+  workflow_dispatch:   # 버튼을 눌러야만 실행돼요
+permissions:
+  id-token: write      # GitHub 임시 로그인 토큰 발급용
+  contents: read
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - run: az group show -n 11ai-p1-team04-rg --query "{name:name, location:location}" -o table

@@ -1,0 +1,32 @@
+{
+  "male": {
+    "inseam_cm": 78,
+    "hip_girth_cm": 94.7,
+    "hip_width_cm": 34,
+    "hip_depth_cm": 23,
+    "hip_line_height_cm": 85,
+    "ankle_girth_cm": 23,
+    "calf_girth_cm": 37,
+    "knee_girth_cm": 37,
+    "thigh_girth_cm": 56,
+    "upper_arm_girth_cm": 30,
+    "wrist_girth_cm": 16.5,
+    "torso_length_cm": 36.5,
+    "shoulder_width_cm": 39.5,
+    "arm_length_cm": 59,
+    "waist_line_height_cm": 105.9,
+    "chest_line_height_cm": 124,
+    "belly_girth_cm": 82.8,
+    "waist_girth_cm": 78.1,
+    "waist_width_cm": 28.9,
+    "waist_depth_cm": 20.7,
+    "chest_girth_cm": 97.5,
+    "chest_width_cm": 30.5,
+    "chest_depth_cm": 22,
+    "back_width_cm": 39.3,
+    "underbust_girth_cm": 89.1,
+    "belly_front_cm": 11.2,
+    "hip_rear_cm": 13.2,
+    "rise_arc_cm": 69.6
+  }
+}

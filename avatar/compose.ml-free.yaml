@@ -1,0 +1,5 @@
+# 역할: Azure ML 호출 없이 예시 치수로 신체 모델 변형·웹 연결을 테스트합니다.
+services:
+  avatar:
+    environment:
+      FITME_PREDICTION_MODE: example

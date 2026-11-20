@@ -1,0 +1,12 @@
+.env
+.git
+**/__pycache__
+*.zip
+web_viewer
+models/**
+!models/bundled_garments.json
+.cache
+.venv
+releases
+
+.env.*

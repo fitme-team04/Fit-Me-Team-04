@@ -1,0 +1,4 @@
+# Large model weights live in private Azure Blob storage, not Git.
+/models/*.blend -filter binary
+/models/*.npz -filter binary
+/models/*.glb -filter binary

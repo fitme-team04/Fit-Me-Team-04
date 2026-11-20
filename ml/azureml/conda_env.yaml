@@ -1,0 +1,16 @@
+# 역할: Azure ML 환경 fitme-designer-env 버전 3의 conda 정의입니다.
+#       베이스 이미지: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+#       - azureml-defaults는 넣지 않습니다. 최신 버전이 Python 3.9 이상 전용 추론 서버를 요구해 빌드가 실패합니다.
+#       - azureml-designer-core는 0.0.80으로 고정합니다. 0.0.87은 코드가 없는 빈 패키지라
+#         azureml.studio.core를 찾지 못해 컨테이너가 시작 직후 종료됩니다.
+name: project_environment
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8.10
+  - pip=20.2
+  - pip:
+      - azureml-inference-server-http==1.3.4
+      - azureml-designer-core==0.0.80
+      - azureml-designer-classic-modules==0.0.182
+      - azureml-designer-serving==0.0.13

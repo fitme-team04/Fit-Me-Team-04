@@ -1,0 +1,26 @@
+{
+  "source": "FitMe_Body_Viewer, embedded body GLB scene report",
+  "gender": "male",
+  "fitme_measurements": {
+    "height_cm": {
+      "measured": 172.8904,
+      "target": 173
+    },
+    "chest_girth_cm": {
+      "measured": 104.999,
+      "target": 105
+    },
+    "waist_girth_cm": {
+      "measured": 83.0004,
+      "target": 83
+    },
+    "hip_girth_cm": {
+      "measured": 96.0056,
+      "target": 96.0
+    },
+    "shoulder_width_cm": {
+      "measured": 37.1998,
+      "target": 37.2
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# 역할: 등록 모델에 입력 13개·출력 28개 추론 코드를 배포하는 예시입니다.
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: measurements-v2
+endpoint_name: fitme-body-measurements
+# 실제 등록한 모델 이름·버전으로 변경해야 합니다.
+model: azureml:fitme-body-measurements:1
+code_configuration:
+  code: .
+  scoring_script: score_studio.py
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: environment-studio.yaml
+# 실제 모델 메모리 요구량·가용 할당량에 맞춰 선택합니다. 이 예시는 자동 실행하지 않습니다.
+instance_type: Standard_DS3_v2
+instance_count: 1
+request_settings:
+  request_timeout_ms: 90000

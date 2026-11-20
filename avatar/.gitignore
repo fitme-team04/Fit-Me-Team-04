@@ -1,0 +1,37 @@
+# Keep the pinned source tree; ignore only the optional root-level checkout below.
+!/vendor/
+!/vendor/sam-3d-body/
+!/vendor/sam-3d-body/**
+
+# Local settings, virtual environments and caches.
+.env
+.env.*
+!.env.example
+!.env.models.example
+/sam-env/
+/sam-3d-body/
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+
+# Track only the reviewed bundled deployment assets.
+# Re-open models/ even if the parent repository ignores directories named models.
+!/models/
+/models/*
+!/models/README_MODELS.md
+!/models/MHR_LICENSE.txt
+!/models/bundled_assets.json
+!/models/a_pose.report.json
+!/models/sam_body.report.json
+!/models/sam_body.preview.glb
+
+/validation/*.glb
+
+# Runtime cache downloaded from private Azure Blob storage (never commit).
+/models/mhr_model.pt
+/models/fitme_depth_fixed.blend
+/models/a_pose.npz
+/models/sam_body.npz
+/models/.model-*
+/ml-model/

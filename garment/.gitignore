@@ -1,0 +1,21 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+/releases/
+
+# Re-open the directories even when the parent repository ignores models/.
+!/models/
+/models/*
+!/models/bundled_garments.json
+!/models/garments/
+/models/garments/*
+!/models/garments/README.md
+!/models/garments/registry.json
+!/models/garments/crewneck_v1.blend
+!/models/garments/crewneck_v1.npz
+!/models/garments/slacks_v1.blend
+!/models/garments/slacks_v1.npz

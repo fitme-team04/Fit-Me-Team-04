@@ -1,0 +1,3 @@
+azure-storage-blob>=12,<13
+azure-identity>=1,<2
+python-dotenv>=1,<2

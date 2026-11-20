@@ -1,0 +1,27 @@
+# 역할: 서비스 컨테이너·환경변수·볼륨과 시작 순서를 정의합니다.
+name: fitme-avatar
+services:
+  model-sync:
+    build: .
+    image: fitme-avatar:local
+    # Write only the host model cache. API continues to mount it read-only.
+    user: "0:0"
+    env_file: .env.models
+    command: ["python", "/app/scripts/download_blob_models.py", "--models", "/models"]
+    restart: "no"
+    volumes:
+      - ./models:/models
+  avatar:
+    build: .
+    image: fitme-avatar:local
+    env_file: .env
+    depends_on:
+      model-sync:
+        condition: service_completed_successfully
+    ports:
+      - "${VM_BIND_IP:-127.0.0.1}:8001:8001"
+    restart: unless-stopped
+    gpus: all
+    shm_size: 1gb
+    volumes:
+      - ./models:/models:ro

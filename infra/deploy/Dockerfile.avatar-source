@@ -1,0 +1,15 @@
+# 역할: 기존 GPU 실행 이미지와 모델을 유지하고 검증된 신체 서비스 소스만 새 이미지에 넣습니다.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+USER root
+ARG SOURCE_REVISION
+ARG BASE_IMAGE_ID
+LABEL org.opencontainers.image.revision="${SOURCE_REVISION}" \
+      com.fitme.runtime-base-image="${BASE_IMAGE_ID}"
+COPY src/ /app/src/
+COPY manifest.json /opt/fitme-source/manifest.json
+RUN chmod -R a+rX /app/src /opt/fitme-source
+ENV FITME_SOURCE_REVISION=${SOURCE_REVISION} \
+    PYTHONPYCACHEPREFIX=/tmp/fitme-bytecode-${SOURCE_REVISION}
+WORKDIR /app/src
+USER fitme

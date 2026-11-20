@@ -1,0 +1,25 @@
+# Python 3.12
+# 1차 프로젝트 PoC 파이썬 라이브러리 목록 (버전 고정). 설치: pip install -r requirements.txt
+
+# DB 예시 코드 (db/예시_코드/ 의 3d·ai·front 폴더) — 컨테이너 MySQL 접속
+PyMySQL==1.2.3           # MySQL 접속 (순수 파이썬)
+
+# 데이터 수집 (fetch) — 표준 라이브러리만 사용, 추가 설치 없음
+
+# 선택: NHANES parquet 읽기
+pyarrow==26.0.1          # opensource/fetch/body/nhanes.py — 없으면 CDC 원본 XPT 로 대신 읽음
+
+# 3D 신체 모델 (model 그룹, 이후 단계)
+# torch: Windows 는 PyPI 기본판이 CPU 전용(약 118MB). Linux 는 CUDA 판(수 GB)이 받아지므로 먼저 pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.14.0            # anny 신체 모델 계산 (PyTorch)
+anny==0.6.2              # naver/anny 3D 인체 모델 (sources/anny 와 같은 의존성)
+clad-body==0.6.1         # datar-psa/clad-body ISO 8559-1 치수 계산 (Python 3.12 이상)
+roma==1.8.0              # anny·clad-body 회전 계산 (anny 가 1.7.1 이상 요구)
+numpy==2.2.6             # anny·clad-body 배열 계산
+scipy==1.18.1            # clad-body (1.15.3 이상 요구)
+trimesh==5.2.0           # anny·clad-body 메시 처리 (clad-body 가 4.11.2 이상 요구)
+pillow==12.3.0           # anny 부위 분할 이미지(png) 읽기
+PyYAML==6.0.2            # anny 부위 분할 메타데이터(yaml) 읽기
+requests==2.32.3         # anny 모델 자산 내려받기
+safetensors==0.8.0       # anny 모델 가중치 파일 읽기
+warp-lang==1.19.0        # anny 스키닝 계산 (NVIDIA Warp, 약 128MB)

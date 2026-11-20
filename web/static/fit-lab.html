@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>입어봄 · Fit Lab</title>
+  <!-- 글꼴: Pretendard (한글 웹폰트) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- 화면은 하나의 휴대폰 틀(.phone) 안에서 단계(step)만 바꿔 보여 줌. 내용은 app.js 가 그림 -->
+  <main class="phone">
+    <header class="topbar">
+      <button class="back" id="back" aria-label="이전 단계" hidden>←</button>
+      <div class="brand"><a href="/" aria-label="입어봄 피팅룸으로">입어봄</a> <span>/ fit lab</span></div>
+      <span class="badge" id="mode-badge" title="데이터 연결 상태">확인 중…</span>
+    </header>
+
+    <ol class="steps" aria-label="진행 단계">
+      <li data-step="1">등록</li>
+      <li data-step="2">상품·내 정보</li>
+      <li data-step="3">추천</li>
+    </ol>
+
+    <section id="view" aria-live="polite"></section>
+
+    <footer class="foot">추천은 참고 정보이며 실제 착용감은 소재와 체형에 따라 다를 수 있어요.</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "control_vertices": 10582,
+  "control_triangles": 21160,
+  "mhr_vertices": 18439,
+  "mhr_triangles": 36874,
+  "control_ref_hash": "c584017a7823047f2fb63a8d197c9292094ec12b865ebe5472ac5980db6d6d61",
+  "surface_distance_cm": {
+    "median": 1.2067428790032864,
+    "p95": 4.11999527364969,
+    "max": 6.88290074467659
+  },
+  "scale": 0.9782018734405147,
+  "calibration_id": "e7fad1e2dc29a957461b803842deda007c3e227abbf0681c698c1f7799634a54",
+  "fixed_pose": {
+    "reference_pose": "A",
+    "arm_angle_deg": 45,
+    "pelvis_tilt_deg": 0,
+    "shoulder_tilt_deg": 0,
+    "shoulder_slope_deg": 23
+  },
+  "binding_reference": "posed control, not raw Basis",
+  "accuracy_note": "Nearest-surface correspondence; this is not anthropometric validation."
+}

@@ -1,0 +1,13 @@
+<!-- 역할: 브라우저에서 의류 또는 피팅 데모를 표시합니다. -->
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>FitMe 의류 모델</title>
+<h1>의류 모델 생성</h1><form><label>상품 <select id="product"></select></label> <label>사이즈 <select id="size"></select></label> <button>의류 생성</button></form><p role="status"></p>
+<script type="module">
+const product=document.querySelector('#product'), size=document.querySelector('#size'), status=document.querySelector('[role=status]');
+async function get(url){const r=await fetch(url);if(!r.ok)throw Error(await r.text());return r.json()}
+async function refresh(){const id=product.value;size.replaceChildren();try{const rows=await get('/api/garments/'+id+'/sizes');if(product.value===id)for(const s of rows)size.add(new Option(s.region+' '+s.size_label,s.size_id));}catch(e){status.textContent=e.message}}
+product.onchange=refresh;
+document.querySelector('form').onsubmit=async e=>{e.preventDefault();if(!size.value)return;
+const garment_id=Number(product.value),item_code=product.selectedOptions[0].dataset.itemCode,size_id=Number(size.value);status.textContent='생성 중…';
+try{const r=await fetch('/api/garments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({item_code,garment_id,size_id})});if(!r.ok)throw Error(await r.text());const receipt=await r.json();status.textContent='Blob 저장 완료 · '+receipt.model_id;}catch(e){status.textContent=e.message}};
+try{for(const g of await get('/api/garments')){const option=new Option(g.garment_name+' · '+g.item_code,g.garment_id);option.dataset.itemCode=g.item_code;product.add(option);}product.value='6';if(!product.value)product.selectedIndex=0;await refresh();if([...size.options].some(o=>o.value==='3'))size.value='3';}catch(e){status.textContent=e.message}
+</script></html>

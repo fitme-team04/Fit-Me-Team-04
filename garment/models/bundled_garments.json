@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "release": "2026-11-16-v19",
+  "blob_prefix": "",
+  "templates": {
+    "crewneck": "body_center_back_v19",
+    "slacks": "black_midrise_straight_v1"
+  },
+  "files": {
+    "black_midrise_straight_v1.blend": {
+      "bytes": 2466066,
+      "sha256": "ce0bf17b595517f18dc3534e63c5ec9c8984b4d65feb10edcb5a19beab98af56"
+    },
+    "black_midrise_straight_v1.npz": {
+      "bytes": 312070,
+      "sha256": "4e49a2c3e5da664c5cf9801590a6e0eed33a8796b4d4ec6c663aea33c13b879e"
+    },
+    "body_center_back_v19.blend": {
+      "bytes": 473694,
+      "sha256": "0ca16aeced1a2a2c3d3588efd81c1b38cc50e0fc7c090e6b5caa101a512c22db"
+    },
+    "body_center_back_v19.npz": {
+      "bytes": 136627,
+      "sha256": "744b60ea6539c792ab9778c12cfd5eee781d84266d239669c8e0e3b1a02c294c"
+    },
+    "registry.json": {
+      "bytes": 4278,
+      "sha256": "f3b5b1525e35f402f9e8828cd03561caa74f501b1d447acc2b30419a97abb8a2"
+    }
+  }
+}

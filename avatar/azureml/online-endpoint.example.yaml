@@ -1,0 +1,8 @@
+# 역할: 관리 ID 인증을 사용하는 Azure ML 실시간 엔드포인트 예시를 정의합니다.
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: fitme-body-measurements
+auth_mode: aad_token
+# 사설 DNS와 작업공간 Private Endpoint 준비 후 사용합니다.
+public_network_access: disabled
+identity:
+  type: system_assigned

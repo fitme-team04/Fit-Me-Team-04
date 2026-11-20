@@ -1,0 +1,25 @@
+{
+  "_source": "db_rows = Azure SQL fitme-sql-dev > fitme, MEASURES_SQL 조회 결과 (UNIQLO 크루넥T E422992-000, 2026-11-16 조회 실제 값). value_cm 은 가슴단면",
+  "category": "상의",
+  "selected_size": "M",
+  "region": "KR",
+  "ml_response": {
+    "male": {
+      "chest_girth_cm": 100.08,
+      "chest_width_cm": 34.93,
+      "waist_girth_cm": 80.56,
+      "hip_girth_cm": 95.98
+    }
+  },
+  "db_rows": [
+    {"item_code": "E422992-000", "category": "상의", "size_id": 1, "size_label": "XS",  "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 47.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 2, "size_label": "S",   "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 50.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 3, "size_label": "M",   "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 53.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 4, "size_label": "L",   "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 56.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 5, "size_label": "XL",  "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 60.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 6, "size_label": "XXL", "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 64.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 7, "size_label": "3XL", "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 68.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 8, "size_label": "4XL", "region": "KR", "measure_code": "chest_width", "basis": "garment", "value_cm": 72.0},
+    {"item_code": "E422992-000", "category": "상의", "size_id": 10, "size_label": "M",  "region": "US", "measure_code": "chest_width", "basis": "garment", "value_cm": 56.0}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "measurement_method": "sam_surface_sections_11_v2",
+  "height_cm": 175,
+  "weight_kg": 70,
+  "sam_measurements": {
+    "inseam_cm": 78,
+    "hip_girth_cm": 95,
+    "hip_width_cm": 34,
+    "hip_depth_cm": 23,
+    "hip_line_height_cm": 85,
+    "ankle_girth_cm": 23,
+    "calf_girth_cm": 37,
+    "knee_girth_cm": 37,
+    "thigh_girth_cm": 56,
+    "upper_arm_girth_cm": 30,
+    "wrist_girth_cm": 16.5
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "templates": {
+    "crewneck_v1": {
+      "kind": "crewneck",
+      "blend": "crewneck_v1.blend",
+      "binding": "crewneck_v1.npz",
+      "object": "GarmentMesh",
+      "revision": "1",
+      "base_spec": {
+        "body_length": 69.0,
+        "garment_shoulder_width": 46.5,
+        "chest_width": 53.0,
+        "sleeve_length": 22.0
+      },
+      "sleeve_basis": "shoulder",
+      "registration": {
+        "vertices": 340,
+        "triangles": 600,
+        "distance_cm": {
+          "median": 0.0,
+          "p95": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "slacks_v1": {
+      "kind": "slacks",
+      "blend": "slacks_v1.blend",
+      "binding": "slacks_v1.npz",
+      "object": "GarmentMesh",
+      "revision": "1",
+      "base_spec": {
+        "waist_width": 40.0,
+        "hip_width": 50.0,
+        "front_rise": 28.0,
+        "inseam": 76.0,
+        "thigh_width": 31.0,
+        "knee_width": 22.0,
+        "hem_width": 18.0
+      },
+      "sleeve_basis": "none",
+      "registration": {
+        "vertices": 575,
+        "triangles": 1024,
+        "distance_cm": {
+          "median": 0.0,
+          "p95": 0.0,
+          "max": 0.0
+        }
+      }
+    }
+  }
+}

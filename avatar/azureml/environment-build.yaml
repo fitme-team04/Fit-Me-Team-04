@@ -1,0 +1,6 @@
+# 역할: JSON 입력을 받는 등록 모델의 추론 환경을 정의합니다.
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+name: fitme-studio-json-inference
+build:
+  path: .
+  dockerfile_path: Dockerfile.studio

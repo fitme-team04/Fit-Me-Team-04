@@ -1,0 +1,22 @@
+{
+  "files": {
+    "fitme_depth_fixed.blend": {
+      "bytes": 25925274,
+      "sha256": "e7e8ebc34570c8baaf55c6e93696bdea5586ed86827e15451381d5ec21f7a635"
+    },
+    "mhr_model.pt": {
+      "bytes": 696110248,
+      "sha256": "352e271a6c42729c68554ceaea0c955e866970160c31e35506d782dc0f7377bc"
+    },
+    "a_pose.npz": {
+      "bytes": 353827,
+      "sha256": "aa63516541f764f4ddd32f8837f52e3ef66d8c013079ecb1cac46165c3e7dc22"
+    },
+    "sam_body.npz": {
+      "bytes": 1612233,
+      "sha256": "3334a3d68ebe421a7fb37112ffd5bc7249937aa6623bb36226990c3594753ea1"
+    }
+  },
+  "control_source": "fitme_depth_fixed.blend, saved 2026-11-05",
+  "mhr_source": "https://github.com/facebookresearch/MHR/releases/tag/v1.0.1"
+}

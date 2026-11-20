@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "source": "Base-template demonstration, not a photograph or ML prediction",
+  "model_sha256": "2e7909513e0cdc5b3a1381e50e7226b1c1dec1c7f8132ff1e96c56e2f68a9c2d",
+  "measurements": {
+    "torso_length_cm": {
+      "target": 35.60000000000001,
+      "measured": 35.6001386267653,
+      "surface": "template",
+      "abs_error": 0.00013862676529186047
+    },
+    "belly_front_cm": {
+      "target": 9.502810170523853,
+      "measured": 9.502769906995026,
+      "surface": "template",
+      "abs_error": 4.0263528827466644e-05
+    },
+    "hip_line_height_cm": {
+      "target": 84.25478285066784,
+      "measured": 84.25478296371007,
+      "surface": "template",
+      "abs_error": 1.1304223335173447e-07
+    },
+    "belly_girth_cm": {
+      "target": 86.20564386180814,
+      "measured": 86.20564415354502,
+      "surface": "template",
+      "abs_error": 2.9173688176342694e-07
+    },
+    "chest_width_cm": {
+      "target": 34.93380547251553,
+      "measured": 34.93511183386889,
+      "surface": "template",
+      "abs_error": 0.001306361353357488
+    },
+    "knee_girth_cm": {
+      "target": 34.07711535365485,
+      "measured": 34.07711549861723,
+      "surface": "template",
+      "abs_error": 1.4496238520678162e-07
+    },
+    "rise_arc_cm": {
+      "target": 63.27213164208364,
+      "measured": 63.272131642083615,
+      "surface": "template",
+      "abs_error": 2.842170943040401e-14
+    },
+    "wrist_girth_cm": {
+      "target": 16.986842104069176,
+      "measured": 16.986842335076943,
+      "surface": "template",
+      "abs_error": 2.3100776758155916e-07
+    },
+    "hip_girth_cm": {
+      "target": 95.97908003546519,
+      "measured": 95.97907806450257,
+      "surface": "template",
+      "abs_error": 1.9709626144504e-06
+    },
+    "hip_depth_cm": {
+      "target": 23.569349482877783,
+      "measured": 23.569346455659275,
+      "surface": "template",
+      "abs_error": 3.0272185078672464e-06
+    },
+    "arm_length_cm": {
+      "target": 49.36820839366161,
+      "measured": 49.36836516717952,
+      "surface": "template",
+      "abs_error": 0.0001567735179079932
+    },
+    "height_cm": {
+      "target": 175.0,
+      "measured": 174.87417459487915,
+      "surface": "template",
+      "abs_error": 0.1258254051208496
+    },
+    "waist_width_cm": {
+      "target": 29.939210547167033,
+      "measured": 29.93921055888239,
+      "surface": "template",
+      "abs_error": 1.1715357572938956e-08
+    },
+    "hip_rear_cm": {
+      "target": 14.07219124865261,
+      "measured": 14.072228472245168,
+      "surface": "template",
+      "abs_error": 3.7223592558532914e-05
+    },
+    "waist_line_height_cm": {
+      "target": 100.95478285066784,
+      "measured": 100.95477932246779,
+      "surface": "template",
+      "abs_error": 3.5282000538927605e-06
+    },
+    "upper_arm_girth_cm": {
+      "target": 35.338727205907176,
+      "measured": 35.33922878587768,
+      "surface": "template",
+      "abs_error": 0.0005015799705034851
+    },
+    "hip_width_cm": {
+      "target": 33.83182837193923,
+      "measured": 33.83182834684181,
+      "surface": "template",
+      "abs_error": 2.5097421030295664e-08
+    },
+    "chest_depth_cm": {
+      "target": 23.564240764395635,
+      "measured": 23.56427978613087,
+      "surface": "template",
+      "abs_error": 3.9021735236843824e-05
+    },
+    "thigh_girth_cm": {
+      "target": 53.19749343333718,
+      "measured": 53.19749327802914,
+      "surface": "template",
+      "abs_error": 1.553080366534232e-07
+    },
+    "calf_girth_cm": {
+      "target": 35.109792465560886,
+      "measured": 35.10979247122327,
+      "surface": "template",
+      "abs_error": 5.662386115545814e-09
+    },
+    "chest_girth_cm": {
+      "target": 100.08248788574446,
+      "measured": 100.08347221911733,
+      "surface": "template",
+      "abs_error": 0.000984333372869628
+    },
+    "waist_girth_cm": {
+      "target": 80.56457959116273,
+      "measured": 80.5645888133788,
+      "surface": "template",
+      "abs_error": 9.222216078796919e-06
+    },
+    "waist_depth_cm": {
+      "target": 19.907585353528816,
+      "measured": 19.90766262710363,
+      "surface": "template",
+      "abs_error": 7.727357481357444e-05
+    },
+    "chest_line_height_cm": {
+      "target": 119.65478285066784,
+      "measured": 119.65478785197527,
+      "surface": "template",
+      "abs_error": 5.001307428642576e-06
+    },
+    "shoulder_width_cm": {
+      "target": 37.2,
+      "measured": 37.19977235903972,
+      "surface": "template",
+      "abs_error": 0.00022764096028282665
+    },
+    "ankle_girth_cm": {
+      "target": 23.260358089208705,
+      "measured": 23.260358013005362,
+      "surface": "template",
+      "abs_error": 7.620334230296066e-08
+    },
+    "underbust_girth_cm": {
+      "target": 90.0824336537435,
+      "measured": 90.08091813130764,
+      "surface": "template",
+      "abs_error": 0.00151552243585229
+    },
+    "back_width_cm": {
+      "target": 33.44826698303223,
+      "measured": 33.448770268071506,
+      "surface": "template",
+      "abs_error": 0.000503285039279433
+    },
+    "inseam_cm": {
+      "target": 76.22562025301158,
+      "measured": 76.22498830221446,
+      "surface": "template",
+      "abs_error": 0.0006319507971284111
+    },
+    "arm_angle_deg": {
+      "target": 45,
+      "measured": 45.39705730108727,
+      "surface": "template",
+      "abs_error": 0.39705730108727266
+    },
+    "pelvis_tilt_deg": {
+      "target": 0,
+      "measured": -1.668353794881049e-08,
+      "surface": "template",
+      "abs_error": 1.668353794881049e-08
+    },
+    "shoulder_tilt_deg": {
+      "target": 0,
+      "measured": 1.9976279909646488e-07,
+      "surface": "template",
+      "abs_error": 1.9976279909646488e-07
+    },
+    "shoulder_slope_deg": {
+      "target": 23,
+      "measured": 22.999872060119706,
+      "surface": "template",
+      "abs_error": 0.0001279398802935816
+    }
+  }
+}

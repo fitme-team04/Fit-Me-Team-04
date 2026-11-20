@@ -1,0 +1,15 @@
+# 역할: Studio 추론 스크립트의 MLflow·scikit-learn 실행 환경을 정의합니다.
+# Replace model-library versions with the EXACT training versions before deployment.
+name: fitme-studio-inference
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - azureml-inference-server-http
+      - mlflow>=2,<4
+      - scikit-learn>=1.3,<2
+      - pandas>=2,<3
+      - numpy>=1.26,<3
+      - joblib>=1.3,<2
