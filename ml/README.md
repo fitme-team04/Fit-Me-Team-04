@@ -7,7 +7,7 @@
 | `azureml/score_ml.py` | 엔드포인트 진입점. 요청 JSON을 받아 예측기를 부름 |
 | `azureml/fitme_predictor.py` | model-s·model-c를 불러와 빈 SAM 값을 채우고 상체 17개를 예측 |
 | `azureml/conda_env.yaml` | 배포 환경 `fitme-designer-env` 버전 3 정의 |
-| `pipelines/` | Azure ML Designer 파이프라인에 넣은 SQL |
+| `pipelines/` | Azure ML Designer 파이프라인에 넣은 SQL, 파이프라인 그림(`images/`) |
 | `samples/` | 테스트 요청 3종과 실제 엔드포인트 응답 |
 | `tests/` | Azure ML 없이 돌리는 예측기 회귀 테스트 |
 
@@ -26,6 +26,25 @@
 - 상체 17개: `torso_length_cm`, `shoulder_width_cm`, `arm_length_cm`, `waist_line_height_cm`, `chest_line_height_cm`, `belly_girth_cm`, `waist_girth_cm`, `waist_width_cm`, `waist_depth_cm`, `chest_girth_cm`, `chest_width_cm`, `chest_depth_cm`, `back_width_cm`, `underbust_girth_cm`, `belly_front_cm`, `hip_rear_cm`, `rise_arc_cm`
 
 Designer Train Model은 정답 열을 하나만 받기 때문에, 두 모델 모두 데이터를 `item`(어떤 치수인지) + `value`(값)로 **세로로 쌓아 모델 하나**로 학습했습니다. 부스팅 트리는 첫 분기에서 `item`으로 갈라 항목마다 다른 규칙을 배웁니다.
+
+## Designer 파이프라인
+
+model-c를 학습한 Azure ML Designer 파이프라인입니다. 위에서 아래로 흐릅니다.
+
+<img src="pipelines/images/model-c-pipeline.png" alt="model-c Designer 파이프라인" width="720">
+
+| 순서 | 블록 | 하는 일 | SQL |
+|---|---|---|---|
+| 1 | 데이터셋 `sizekorea_2021_adult2` | 사이즈코리아 성인 실측 | |
+| 2 | Apply SQL Transformation | 남자만, 입력 13개가 모두 있는 사람만 남김 | [`pipelines/model-c/01_filter.sql`](pipelines/model-c/01_filter.sql) |
+| 3 | Split Data | 학습용(왼쪽)과 시험용(오른쪽)으로 나눔 | |
+| 4 | Apply SQL Transformation 2개 | 예측할 17개를 `item` + `value`로 세로로 쌓음 | [`pipelines/model-c/02_stack.sql`](pipelines/model-c/02_stack.sql) |
+| 5 | Edit Metadata | 열의 종류(범주·정답) 지정 | |
+| 6 | Boosted Decision Tree Regression → Train Model | 학습 | |
+| 7 | Score Model → Evaluate Model | 시험 데이터로 예측하고 전체 오차 계산 | |
+| 8 | Apply SQL Transformation | 항목별 평균 절대 오차 계산 | [`pipelines/per_item_mae.sql`](pipelines/per_item_mae.sql) |
+
+model-s도 같은 구조이고 SQL만 다릅니다([`pipelines/model-s/`](pipelines/model-s/)).
 
 ## 성능 (시험 데이터, 평균 절대 오차 cm)
 
