@@ -7,6 +7,7 @@
 | `ERD.drawio` | ERD 원본 (편집용) |
 | `데이터흐름.png` | ① 데이터 소스(앱 입력, fetch 그룹) → ② DB → ③ 처리(AI 추정 모델, 비교·매칭) → ④ 결과(3D 몸 모델, 사이즈 추천) |
 | `데이터흐름.drawio` | 데이터 흐름 원본 (편집용) |
+| [`infra/`](infra/) | 인프라 아키텍처 그림: 구조 1(발표 때)·구조 2(최종 코드), 전체 + 역할별 4장씩 |
 | `Azure구성.png` / `.drawio` | Azure PoC 배포 구성 (VM 의 MySQL + 예약 실행 Container Apps Job). 흐름 ①~⑦ 은 그림 아래 범례 |
 
 ## ERD 읽는 법

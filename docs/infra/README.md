@@ -18,6 +18,12 @@
 
 ## 아키텍처
 
+자세한 그림은 [architecture/infra/](../../architecture/infra/README.md)에 있습니다(구조 1 발표 때 · 구조 2 최종 코드, 전체 + 역할별 4장씩). 손댄 리소스·권한·알림·문제 해결 전체 목록은 [inventory.md](inventory.md)에 있습니다.
+
+[![구조 2 · 사진 속 몸 그대로 쓰기 (최종 코드)](../../architecture/infra/structure-2-all.png)](../../architecture/infra/structure-2-all.png)
+
+아래는 같은 내용을 줄인 그림입니다.
+
 ```mermaid
 flowchart TB
   user["사용자 (인터넷)"] -->|"443만 공개"| web

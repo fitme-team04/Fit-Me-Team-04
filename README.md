@@ -45,6 +45,8 @@ flowchart LR
 | ⑤ | 몸 둘레와 옷 실측을 비교해 핏 판정 | 의류 서버 `/fit` | [`ml/ease_check/`](ml/ease_check/) |
 | ⑥ | 3D 몸 + 옷을 화면에 표시 | 브라우저 | [`web/static/`](web/static/) |
 
+Azure 리소스까지 그린 자세한 그림은 [architecture/infra/](architecture/infra/README.md)에 있습니다(발표 때 구조와 최종 구조, 역할별 4장씩).
+
 ### ML을 쓰는 방식이 바뀐 과정
 
 - **처음(11/14~11/17)**: 사진에서 잰 치수 11개를 ML이 28개로 늘리고, 그 치수대로 **기본 마네킹을 변형**해 몸을 만들었습니다. 핏 판정도 ML 치수로 했습니다.
@@ -81,6 +83,7 @@ flowchart LR
 | [`avatar/`](avatar/) | 신체 서버: 사진 → 3D 몸(GLB) · 측정값 | 3D |
 | [`garment/`](garment/) | 의류 서버: 옷 3D 생성·시뮬레이션, 핏 판정 API | 3D |
 | [`ml/`](ml/) | ML 엔드포인트 코드·학습 파이프라인 SQL, [`ease_check/`](ml/ease_check/) 핏 판정 기준 | ML |
+| [`architecture/`](architecture/) | [인프라 아키텍처 그림](architecture/infra/README.md)(구조 1·2), ERD, 데이터 흐름 | 인프라 · 데이터 |
 | [`infra/`](infra/) | [`terraform/`](infra/terraform/) 네트워크 코드, [`deploy/`](infra/deploy/) 서버 교체 스크립트 | 인프라 |
 | [`.github/workflows/`](.github/workflows/) | 자동 배포(웹·의류), Terraform plan/apply | 인프라 |
 | [`db/`](db/) · [`opensource/`](opensource/) | DB 테이블·SQL·예시 데이터, 공개 데이터 수집 코드 | 데이터 |
@@ -89,7 +92,7 @@ flowchart LR
 
 ## 인프라·DevOps 한눈에
 
-자세한 내용은 [docs/infra/README.md](docs/infra/README.md)에 있습니다.
+자세한 내용은 [docs/infra/README.md](docs/infra/README.md)에, 손댄 리소스·권한·알림·문제 해결 전체 목록은 [docs/infra/inventory.md](docs/infra/inventory.md)에 있습니다.
 
 - **네트워크**: 공개·내부·데이터 3구역. 인터넷에 열린 입구는 웹 서버(https) 하나뿐이고, 규칙은 Terraform으로만 바꿉니다.
 - **자동 배포**: dev에 머지 → GitHub Actions(OIDC 로그인, 저장된 비밀번호 없음) → 이미지 빌드·레지스트리 저장 → 서버에서 컨테이너만 교체 → health 확인. 되돌리기는 이전 이미지 태그로 바꾸기만 하면 됩니다.
