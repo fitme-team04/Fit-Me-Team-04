@@ -44,7 +44,11 @@ model-c를 학습한 Azure ML Designer 파이프라인입니다. 위에서 아�
 | 7 | Score Model → Evaluate Model | 시험 데이터로 예측하고 전체 오차 계산 | |
 | 8 | Apply SQL Transformation | 항목별 평균 절대 오차 계산 | [`pipelines/per_item_mae.sql`](pipelines/per_item_mae.sql) |
 
-model-s도 같은 구조이고 SQL만 다릅니다([`pipelines/model-s/`](pipelines/model-s/)).
+### model-s
+
+<img src="pipelines/images/model-s-pipeline.png" alt="model-s Designer 파이프라인" width="720">
+
+model-s도 블록 순서는 model-c와 같고 SQL만 다릅니다([`01_filter.sql`](pipelines/model-s/01_filter.sql), [`02_stack.sql`](pipelines/model-s/02_stack.sql)).
 
 ## 성능 (시험 데이터, 평균 절대 오차 cm)
 
