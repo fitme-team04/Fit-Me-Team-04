@@ -19,3 +19,5 @@ __pycache__/
 !/models/garments/crewneck_v1.npz
 !/models/garments/slacks_v1.blend
 !/models/garments/slacks_v1.npz
+# 최종 모델 원본 보관(bundled_garments.json의 blob_prefix와 같은 경로)
+!/models/releases/
