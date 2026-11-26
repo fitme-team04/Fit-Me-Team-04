@@ -1,3 +1,5 @@
 # Bundled garment templates are below 1 MiB each and use regular Git.
 /models/garments/*.blend -filter binary
 /models/garments/*.npz -filter binary
+/models/releases/*/*.blend -filter binary
+/models/releases/*/*.npz -filter binary

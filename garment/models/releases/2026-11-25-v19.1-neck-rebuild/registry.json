@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "templates": {
+    "body_center_back_v19": {
+      "kind": "crewneck",
+      "blend": "body_center_back_v19.blend",
+      "binding": "body_center_back_v19.npz",
+      "object": "GarmentMesh",
+      "revision": "19.1-neck-rebuild",
+      "base_spec": {
+        "body_length": 58.16,
+        "garment_shoulder_width": 39.06,
+        "chest_width": 55.05,
+        "sleeve_length": 68.34592958803141
+      },
+      "sleeve_basis": "center_back",
+      "registration": {
+        "vertices": 5980,
+        "triangles": 11695,
+        "distance_cm": {
+          "median": 1.9154510460793972,
+          "p95": 6.118915677070619,
+          "max": 11.110587418079376
+        }
+      },
+      "deformation_policy": "shape_preserving_center_back_v1",
+      "anchor_bindings": {
+        "fit_anchor": {
+          "reference": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ids": [
+            181,
+            198,
+            180
+          ],
+          "weights": [
+            0.16500564104586657,
+            2.5560492393225676e-09,
+            0.8349943563980842
+          ]
+        },
+        "fit_shoulder_L": {
+          "reference": [
+            0.19529999792575836,
+            -0.001446026610210538,
+            -0.009170294739305973
+          ],
+          "ids": [
+            23,
+            49,
+            24
+          ],
+          "weights": [
+            0.08219354062880091,
+            0.14622022535970877,
+            0.7715862340114903
+          ]
+        },
+        "fit_cuff_L": {
+          "reference": [
+            0.5353858470916748,
+            -0.054318368434906006,
+            -0.344470739364624
+          ],
+          "ids": [
+            49,
+            335,
+            336
+          ],
+          "weights": [
+            2.8277870489645807e-08,
+            0.44367689497462587,
+            0.5563230767475037
+          ]
+        },
+        "fit_shoulder_R": {
+          "reference": [
+            -0.19529999792575836,
+            -0.0014506398001685739,
+            -0.009176014922559261
+          ],
+          "ids": [
+            0,
+            25,
+            26
+          ],
+          "weights": [
+            0.8584691379674397,
+            0.08936013145718685,
+            0.0521707305753735
+          ]
+        },
+        "fit_cuff_R": {
+          "reference": [
+            -0.5352698564529419,
+            -0.05447356402873993,
+            -0.3445702791213989
+          ],
+          "ids": [
+            50,
+            332,
+            333
+          ],
+          "weights": [
+            3.139409687769046e-08,
+            0.5590915020102214,
+            0.4409084665956818
+          ]
+        }
+      },
+      "body_collision_policy": "none",
+      "sleeve_definition": "back neck center through shoulder to cuff; template-defined back-top path"
+    },
+    "black_midrise_straight_v1": {
+      "kind": "slacks",
+      "blend": "black_midrise_straight_v1.blend",
+      "binding": "black_midrise_straight_v1.npz",
+      "object": "GarmentMesh",
+      "revision": "1.2",
+      "base_spec": {
+        "waist_width": 42.0,
+        "hip_width": 52.0,
+        "inseam": 72.0,
+        "thigh_width": 32.0
+      },
+      "sleeve_basis": "none",
+      "registration": {
+        "vertices": 13054,
+        "triangles": 25714,
+        "distance_cm": {
+          "median": 2.10116570815444,
+          "p95": 11.820725351572015,
+          "max": 15.178845822811127
+        }
+      },
+      "anchor_bindings": {
+        "fit_anchor_waist": {
+          "reference": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ids": [
+            317,
+            347,
+            316
+          ],
+          "weights": [
+            0.15150575327733928,
+            1.3490552941766839e-08,
+            0.8484942332321078
+          ]
+        }
+      },
+      "source_style": "approved midrise straight pants",
+      "measurement_note": "base_spec defines the deformation cage; custom mesh surface measurements differ",
+      "body_collision_policy": "none",
+      "configurable_fields": [],
+      "deformation_policy": "static"
+    }
+  }
+}
